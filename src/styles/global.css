@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Shrikhand&display=swap");
+
+:root {
+  /* ── Backgrounds ── */
+  --base: #0e0e17;
+  --surface-1: #16161f;
+  --surface-2: #1e1e2a;
+  --surface-3: #252534;
+  --surface-4: #2e2e40;
+  --surface-5: #44445f;
+
+  /* ── Typography ── */
+  --text-primary: #f0f0fa;
+  --text-secondary: #9898b0;
+  --text-tertiary: #5c5c78;
+  --text-inverse: #0e0e17;
+
+  /* ── Brand Secondary / Success ── */
+  --brand-secondary: #49ec46;
+  --brand-secondary-hover: #a4f6a2;
+  --brand-secondary-muted: rgba(73, 236, 70, 0.12);
+  --brand-secondary-glow: rgba(73, 236, 70, 0.3);
+
+  --color-secondary: #0628ee;
+  --color-secondary--700: #0820ad;
+  --color-secondary--500: #6077fb;
+  --color-secondary--400: #9ba9f8;
+  --color-secondary--300: #cfd6fc;
+  --color-success: #49ec46;
+
+  /*  Border Radius  */
+  --radius-xs: 0.5rem; /* 8px */
+  --radius-sm: 0.75rem; /* 12px */
+  --radius-md: 1rem; /* 16px */
+  --radius-lg: 1.5rem; /* 24px */
+  --radius-XXG: 50%;
+  /*  Typography  */
+  --font-sans: "Big Shoulders", sans-serif;
+  /*  Font Sizes  */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-md: 1.125rem; /* 18px */
+  --text-lg: 1.25rem; /* 20px  */
+  --text-xl: 1.5rem; /* 24px  */
+  --text-2xl: 1.875rem; /* 30px  */
+  --text-3xl: 2.5rem; /* 36px  */
+  --text-4xl: 3rem; /* 48px   */
+  --text-5xl: 3.75rem; /* 60px  */
+  --text-6xl: 4.188rem; /* 72px  */
+
+  /* Spacing */
+
+  --space-0: 0rem; /* 0px  */
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px — base unit */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  color: var(--text-primary);
+  background-color: var(--base);
+  margin: 0;
+  padding: var(--space-4);
+  letter-spacing: 4%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+/* INPUTS */
+
+input {
+  font-size: var(--text-base);
+  width: 100%;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  border: 1px solid var(--surface-5);
+  background-color: var(--surface-4);
+  border-radius: var(--radius-xs);
+  margin: var(--space-2) 0;
+  outline: none;
+  padding: var(--space-3);
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: var(--brand-secondary-muted);
+  box-shadow: 0 0 4px 0 var(--brand-secondary-glow);
+}
+
+input:disabled {
+  background-color: var(--gray-200);
+  cursor: not-allowed;
+}
+
+label {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* UTILITIES */
+.u-grid {
+  display: grid;
+}
+.u-flex {
+  display: flex;
+  align-items: center;
+}
+.u-center {
+  justify-content: center;
+}
+.u-items-center {
+  align-items: center;
+}
+
+.u-space-between {
+  justify-content: space-between;
+}
+.gap-4 {
+  gap: var(--space-1);
+}
+.gap-8 {
+  gap: var(--space-2);
+}
+
+.gap-12 {
+  gap: var(--space-3);
+}
+
+.gap-16 {
+  gap: var(--space-4);
+}
+
+.gap-24 {
+  gap: var(--space-6);
+}
+
+.gap-32 {
+  gap: var(--space-8);
+}

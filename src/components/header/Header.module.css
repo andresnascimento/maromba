@@ -1,0 +1,10 @@
+.headerTitle {
+  font-size: var(--text-base);
+  font-weight: 600;
+  width: 100%;
+}
+
+.header {
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}

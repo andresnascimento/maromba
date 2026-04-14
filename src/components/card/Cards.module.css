@@ -1,0 +1,53 @@
+.workoutCard {
+  background-color: var(--surface-2);
+  padding: var(--space-5);
+  border: 1px solid var(--surface-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+
+  align-items: flex-start;
+}
+.workoutCardTitle {
+  font-size: var(--text-xl);
+  font-weight: 400;
+  margin-left: var(--space-20);
+}
+
+.workoutCardWorkoutType {
+  font-family: "Shrikhand", serif;
+  font-size: var(--text-5xl);
+  color: var(--color-success);
+  position: absolute;
+  top: -22px;
+  left: 4px;
+  text-shadow: 3px 5px 0 var(--base);
+}
+.workoutCardTypeContainer {
+  position: relative;
+}
+
+.cardWorkoutBodyContainer {
+  margin-left: var(--space-20);
+  margin-top: var(--space-4);
+}
+.cardWorkoutBodyContainer:has(button) button {
+  width: 100%;
+  justify-content: center;
+}
+
+.workoutCardTypeContainer::before {
+  content: "";
+  position: absolute;
+  width: 56px;
+  aspect-ratio: 1;
+  top: 28px;
+  left: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--surface-4) 0 55%,
+    transparent 55% 65%,
+    var(--surface-4) 65% 100%
+  );
+}

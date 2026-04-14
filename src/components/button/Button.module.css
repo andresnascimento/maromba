@@ -1,0 +1,88 @@
+.btn {
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--base);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  transition: all 0.4s;
+  gap: var(--space-2);
+  letter-spacing: 4%;
+  font-weight: 500;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.2;
+}
+
+.md {
+  font-size: var(--text-lg);
+  padding: var(--space-4);
+}
+
+.sm {
+  font-size: var(--text-base);
+  padding: var(--space-2) var(--space-4);
+}
+
+.lg {
+  font-size: var(--text-lg);
+  padding: var(--space-4);
+}
+.secondary {
+  background-color: var(--brand-secondary);
+  color: var(--text-inverse);
+}
+
+.text {
+  background-color: transparent;
+  border-radius: var(--radius-xs);
+}
+.text-primary {
+  color: var(--text-primary);
+}
+
+.primary {
+  background-color: var(--surface-4);
+  color: var(--text-primary);
+}
+.primary:hover {
+  background-color: var(--base);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.secondary:hover {
+  background-color: var(--brand-secondary-hover);
+  cursor: pointer;
+}
+.secondary:focus {
+  background-color: var(--brand-secondary);
+}
+.text:hover {
+  background-color: var(--surface-4);
+  cursor: pointer;
+}
+
+.submit-workout {
+  margin-top: -2px;
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.login {
+  width: 100%;
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-3);
+}
+
+.signup {
+  color: var(--brand-secondary);
+  background-color: var(--brand-secondary-muted);
+}
+.signup:hover {
+  background-color: var(--surface-3);
+}
