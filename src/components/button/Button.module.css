@@ -16,6 +16,11 @@
   opacity: 0.2;
 }
 
+.xs {
+  font-size: var(--text-sm);
+  padding: var(--space-2);
+}
+
 .md {
   font-size: var(--text-lg);
   padding: var(--space-4);
@@ -30,6 +35,12 @@
   font-size: var(--text-lg);
   padding: var(--space-4);
 }
+
+.xl {
+  font-size: var(--text-2xl);
+  padding: var(--space-8);
+}
+
 .secondary {
   background-color: var(--brand-secondary);
   color: var(--text-inverse);
@@ -38,8 +49,6 @@
 .text {
   background-color: transparent;
   border-radius: var(--radius-xs);
-}
-.text-primary {
   color: var(--text-primary);
 }
 
@@ -85,4 +94,14 @@
 }
 .signup:hover {
   background-color: var(--surface-3);
+}
+
+.btnSubmitPrimary {
+  width: 100%;
+  justify-content: center;
+  background-color: var(--brand-secondary);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
 }

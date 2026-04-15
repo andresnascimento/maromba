@@ -1,13 +1,14 @@
 import { getWorkoutData } from "../features/services/workout";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../components/button";
 import Header from "../components/header";
-import "../styles/global.css";
-import CardWorkout from "../components/card/CardWorkout";
 import MainPageHeader from "../components/pageHeader/MainPageHeader";
-import List from "../components/List";
-import { useNavigate } from "react-router-dom";
+import List from "../components/list/List";
+import CardWorkout from "../components/card/CardWorkout";
+
+import "../styles/global.css";
 
 export default function Home() {
   const [workoutData, setWorkoutData] = useState([]);

@@ -1,0 +1,121 @@
+.workout-exercise__title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.workout-exercise__description {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.exercise__progress-legend {
+  font-size: var(--text-base);
+  margin: 0;
+  color: var(--text-secondary);
+  padding-top: var(--space-3);
+}
+
+progress {
+  width: 100%;
+  height: 10px;
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: var(--surface-4);
+}
+
+/* background color*/
+progress::-webkit-progress-bar {
+  background-color: var(--surface-4);
+}
+
+/* value color */
+progress::-moz-progress-bar {
+  background-color: var(--color-success);
+  border-radius: 999px;
+}
+progress::-webkit-progress-value {
+  background-color: var(--color-success);
+  border-radius: 999px;
+}
+
+.exerciseItem {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--base);
+}
+
+.exerciseName {
+  font-size: var(--text-xl);
+  margin: 0;
+  padding-bottom: var(--space-1);
+}
+.exerciseInfo {
+  margin: 0;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+}
+
+/* .workout-form {
+  margin-top: var(--space-4);
+} */
+
+/* checkbox */
+.exerciseItemCheckbox {
+  gap: var(--space-4);
+}
+.exerciseItemCheckbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkboxBox {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-XXG);
+  display: grid;
+  place-items: center;
+  transition: 0.2s ease;
+  background: radial-gradient(
+    circle,
+    var(--surface-4) 0 55%,
+    transparent 55% 65%,
+    var(--surface-4) 65% 100%
+  );
+}
+
+.exerciseItemCheckbox input:checked + .checkboxBox {
+  background: radial-gradient(
+    circle,
+    var(--color-success) 0 55%,
+    transparent 55% 65%,
+    var(--surface-4) 65% 100%
+  );
+}
+
+.exerciseItemCheckbox input:checked + .checkboxBox::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  margin-top: -5px;
+  border-right: 3px solid var(--base);
+  border-bottom: 3px solid var(--base);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  transition: 0.2s ease;
+}
+.checkboxBox::after {
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.exerciseItemCheckbox:has(input:checked) .exerciseName {
+  text-decoration: line-through;
+}
+.exerciseItemCheckbox:has(input:checked) .exerciseContentContainer {
+  opacity: 0.5;
+}

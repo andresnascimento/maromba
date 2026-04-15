@@ -1,0 +1,7 @@
+.exercisesList {
+  background-color: var(--surface-2);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  margin-bottom: 0;
+  margin-top: var(--space-6);
+}
