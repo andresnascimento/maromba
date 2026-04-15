@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../components/button";
 import Header from "../components/header";
-import MainPageHeader from "../components/pageHeader/MainPageHeader";
+import PageHeader from "../components/pageHeader/";
 import List from "../components/list/List";
 import CardWorkout from "../components/card/CardWorkout";
 
@@ -52,7 +52,11 @@ export default function Home() {
     <>
       <Header titleLabel="Welcome André!" />
       <main>
-        <MainPageHeader date={setCurrentDate()} subtitle={`Today's workout:`} />
+        <PageHeader subtitle={`Today's workout:`} className="workoutPageHeader">
+          <h1>
+            <time>{setCurrentDate()}</time>
+          </h1>
+        </PageHeader>
         <List
           isLoading={isLoading}
           items={workoutData}

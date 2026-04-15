@@ -1,10 +1,16 @@
-.workoutInfoDate {
-  font-size: var(--text-6xl);
+h1,
+time {
+  font-size: var(--text-5xl);
   font-weight: 700;
+  margin: 0;
 }
-
-.workoutInfoTitle {
+.workoutPageHeader:has(.subtitle) .subtitle {
   color: var(--text-secondary);
   font-size: var(--text-md);
   margin: var(--space-4) 0;
+}
+
+.exercisePageHeader:has(.subtitle) .subtitle {
+  font-size: var(--text-md);
+  margin-top: var(--space2);
 }

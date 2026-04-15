@@ -104,7 +104,6 @@ p {
 
 input {
   font-size: var(--text-base);
-  width: 100%;
   font-family: var(--font-sans);
   color: var(--text-primary);
   border: 1px solid var(--surface-5);

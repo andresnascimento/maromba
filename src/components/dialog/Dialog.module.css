@@ -1,0 +1,76 @@
+/* DIALOGS */
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.dialog {
+  border: none;
+  margin: 0;
+  padding: var(--space-6);
+  width: 100%;
+  height: fit-content;
+  max-width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  transform: translateY(140%);
+  transition:
+    transform 0.3s ease,
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+.dialog.open {
+  transform: translateY(66%);
+  opacity: 1;
+}
+.dialog.closing {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.dialogFooter {
+  padding: 0;
+  margin-top: var(--space-4);
+  gap: var(--space-4);
+}
+
+.dialogFooter:has(button) button {
+  width: 100%;
+}
+
+.dialogTitle {
+  margin-bottom: var(--space-3);
+}
+
+.dialog__success {
+  padding: 0;
+  margin: auto;
+  width: 100%;
+}
+
+.dialog__success .dialogFooter {
+  margin-bottom: 0;
+}
+.dialog__success .btn {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.dialogSuccessImage,
+.dialogConfirmImage {
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.dialogSuccessImage img,
+.dialogConfirmImage img {
+  width: auto;
+  height: 150px;
+  border-radius: var(--radius-md);
+}
+
+.dialog__success-title {
+  font-size: var(--text-3xl);
+  padding: 0 var(--space-4);
+}

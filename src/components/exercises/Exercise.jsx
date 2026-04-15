@@ -3,7 +3,7 @@ import styles from "./Exercise.module.css";
 export default function Exercise({ exercise, onChange }) {
   return (
     <article className={styles.exerciseItem}>
-      <label className={`u-flex ${styles.exerciseItemCheckbox}`}>
+      <label className={styles.exerciseItemCheckbox}>
         <input
           type="checkbox"
           name={exercise.exercise}

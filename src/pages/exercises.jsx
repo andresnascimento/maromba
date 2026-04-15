@@ -7,14 +7,19 @@ import Button from "../components/button";
 import List from "../components/list/";
 import Exercise from "../components/exercises";
 import Loading from "../components/loading";
+import ProgressBar from "../components/progressBar/";
+import PageHeader from "../components/pageHeader/";
+import Dialog from "../components/dialog/";
 
 import "../styles/global.css";
+import DialogFeedback from "../components/dialog/DialogFeedback";
 
 export default function Exercises() {
   const [isLoading, setIsLoading] = useState(false);
   const [exerciseData, setExerciseData] = useState(null);
   const [exercises, setExercises] = useState([]);
   const [checkedExercises, setCheckedExercises] = useState([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -50,32 +55,31 @@ export default function Exercises() {
 
   if (!exerciseData) return <Loading />;
   return (
-    <>
-      <header>
-        <nav aria-label="Breadcrumb">
-          <Button
-            iconName="arrow_back "
-            variant="text"
-            size="xs"
-            leadingIcon={true}
-            onClick={() => navigate("/")}
-          >
-            Back to workout list
-          </Button>
-        </nav>
-        <h1>Workout {exerciseData.name}</h1>
-        <p>{exerciseData.title}</p>
-      </header>
+    <div className="u-grid gap-24">
+      <nav aria-label="Breadcrumb">
+        <Button
+          iconName="arrow_back "
+          variant="text"
+          size="xs"
+          leadingIcon={true}
+          onClick={() => navigate("/")}
+        >
+          Back to workout list
+        </Button>
+      </nav>
+      <PageHeader
+        title={`Workout ${exerciseData.name}`}
+        subtitle={exerciseData.title}
+        className="exercisePageHeader"
+      />
+
+      <ProgressBar
+        completed={checkedExercises.length}
+        total={exercises.length}
+        description="completed exercises"
+        className="exercisesProgress"
+      />
       <main>
-        <section>
-          <progress
-            value={checkedExercises.length}
-            max={exercises.length}
-          ></progress>
-          <p className="exercise__progress-legend">
-            {checkedExercises.length} of {exercises.length} exercises completed
-          </p>
-        </section>
         <section aria-labelledby="exercise-list-title">
           <h2 id="exercise-list-title" className="visually-hidden">
             Exercise List
@@ -91,11 +95,24 @@ export default function Exercises() {
               />
             )}
           />
-          <Button size="xl" variant="btnSubmitPrimary">
+          <Button
+            size="xl"
+            variant="btnSubmitPrimary"
+            disabled={checkedExercises.length > 0 ? false : true}
+            onClick={() => setIsDialogOpen(true)}
+          >
             Finish Workout
           </Button>
         </section>
       </main>
-    </>
+      <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+        <DialogFeedback
+          image="../assets/img/confirm.gif"
+          title="Incomplete Workout"
+          subtitle={` You haven't checked all exercises yet. Are you sure you want to finish
+          this workout?`}
+        />
+      </Dialog>
+    </div>
   );
 }
