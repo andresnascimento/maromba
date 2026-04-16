@@ -1,7 +1,7 @@
 import Button from "../button";
 import styles from "./Dialog.module.css";
 
-export default function DialogFeedback({ title, image, subtitle }) {
+export default function DialogFeedback({ title, image, subtitle, children }) {
   return (
     <>
       <form method="dialog">
@@ -14,12 +14,7 @@ export default function DialogFeedback({ title, image, subtitle }) {
 
         <p>{subtitle}</p>
 
-        <menu className={`${styles.dialogFooter} u-flex`}>
-          <Button size="md">Cancel</Button>
-          <Button size="md" variant="secondary">
-            Finish anyway
-          </Button>
-        </menu>
+        <menu className={`${styles.dialogFooter} u-flex`}>{children}</menu>
       </form>
     </>
   );

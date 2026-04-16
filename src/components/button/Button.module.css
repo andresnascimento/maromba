@@ -43,6 +43,10 @@
   padding: var(--space-8);
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .secondary {
   background-color: var(--brand-secondary);
   color: var(--text-inverse);
@@ -54,11 +58,22 @@
   color: var(--text-primary);
 }
 
-.primary {
+.ghost {
   background-color: var(--surface-4);
   color: var(--text-primary);
 }
+
+.primary {
+  background-color: var(--text-primary);
+  color: var(--base);
+}
+
 .primary:hover {
+  background-color: var(--text-secondary);
+  color: var(--base);
+}
+
+.ghost:hover {
   background-color: var(--base);
   color: var(--text-primary);
   cursor: pointer;

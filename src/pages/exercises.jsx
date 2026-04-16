@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getExercises } from "../features/services/exercises";
-import { useNavigate } from "react-router-dom";
+import userState from "../features/services/userState";
 
 import Button from "../components/button";
 import List from "../components/list/";
@@ -10,9 +11,10 @@ import Loading from "../components/loading";
 import ProgressBar from "../components/progressBar/";
 import PageHeader from "../components/pageHeader/";
 import Dialog from "../components/dialog/";
+import DialogFeedback from "../components/dialog/DialogFeedback";
 
 import "../styles/global.css";
-import DialogFeedback from "../components/dialog/DialogFeedback";
+import confirm from "../assets/img/confirm.gif";
 
 export default function Exercises() {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +37,6 @@ export default function Exercises() {
         console.error("Error loading exercises:", error);
       } finally {
         setIsLoading(false);
-        // console.log(exercises);
       }
     }
 
@@ -51,6 +52,29 @@ export default function Exercises() {
     } else {
       setCheckedExercises((exercisesId) => [...exercisesId, id]);
     }
+  }
+
+  function handleSaveWorkout(id) {
+    try {
+      userState.saveLastWorkout(id);
+    } catch (error) {
+      console.error("Controller error:", error);
+    } finally {
+      navigate("/finishedSession", {
+        state: {
+          workoutName: exerciseData.name,
+          totalExercises: exercises.length,
+          completed: checkedExercises.length,
+          duration: 40,
+        },
+      });
+    }
+  }
+
+  function handleFinishWorkout(id) {
+    checkedExercises.length === exercises.length
+      ? handleSaveWorkout(id)
+      : setIsDialogOpen(true);
   }
 
   if (!exerciseData) return <Loading />;
@@ -99,7 +123,7 @@ export default function Exercises() {
             size="xl"
             variant="btnSubmitPrimary"
             disabled={checkedExercises.length > 0 ? false : true}
-            onClick={() => setIsDialogOpen(true)}
+            onClick={() => handleFinishWorkout(exerciseData.id)}
           >
             Finish Workout
           </Button>
@@ -107,11 +131,26 @@ export default function Exercises() {
       </main>
       <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
         <DialogFeedback
-          image="../assets/img/confirm.gif"
+          image={confirm}
           title="Incomplete Workout"
           subtitle={` You haven't checked all exercises yet. Are you sure you want to finish
-          this workout?`}
-        />
+          this workout session?`}
+        >
+          <Button
+            variant="ghost"
+            size="md"
+            onClick={() => setIsDialogOpen(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            size="md"
+            variant="secondary"
+            onClick={() => handleSaveWorkout(exerciseData.id)}
+          >
+            Finish anyway
+          </Button>
+        </DialogFeedback>
       </Dialog>
     </div>
   );

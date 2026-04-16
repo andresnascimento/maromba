@@ -4,6 +4,7 @@ import Icon from "../icon/Icon";
 export default function Button({
   variant = "primary",
   size,
+  fullWidth = false,
   loading = false,
   disabled = false,
   onClick,
@@ -17,6 +18,7 @@ export default function Button({
     styles.btn,
     styles[variant],
     size && styles[size],
+    fullWidth && styles.fullWidth,
     loading && styles.loading,
     disabled && styles.disabled,
     "u-flex",

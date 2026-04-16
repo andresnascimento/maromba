@@ -13,17 +13,31 @@ import "../styles/global.css";
 export default function Home() {
   const [workoutData, setWorkoutData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [lastWorkout, setLastWorkout] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
     async function load() {
       try {
         setIsLoading(true);
-
+        // fetch
         const data = await getWorkoutData();
 
-        setWorkoutData(data?.workouts || []);
-        setLastWorkout(data?.lastWorkout || null);
+        // sort
+        if (data.workouts !== null) {
+          let sortedWorkout = data.workouts;
+          const index = sortedWorkout.findIndex((workout) => {
+            if (workout.id === data.lastWorkout.id) return workout;
+          });
+
+          // set the next workout index
+          const nextIndex = (index + 1) % sortedWorkout.length;
+          sortedWorkout = [
+            ...sortedWorkout.slice(nextIndex),
+            ...sortedWorkout.slice(0, nextIndex),
+          ];
+          // save
+          setWorkoutData(sortedWorkout);
+        }
       } catch (error) {
         console.error("Error loading workouts:", error);
       } finally {
@@ -50,7 +64,18 @@ export default function Home() {
 
   return (
     <>
-      <Header titleLabel="Welcome André!" />
+      <Header titleLabel="Welcome André!">
+        <Button
+          variant="ghost"
+          iconName={"logout"}
+          size="sm"
+          leadingIcon={true}
+          ariaLabel={"Log out"}
+          onClick={() => {
+            console.log("workout list: ", workoutData);
+          }}
+        ></Button>
+      </Header>
       <main>
         <PageHeader subtitle={`Today's workout:`} className="workoutPageHeader">
           <h1>

@@ -1,0 +1,23 @@
+.successImage img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.successTitle {
+  font-size: var(--text-4xl);
+  font-weight: 900;
+}
+
+.sessionStatusList li {
+  font-size: var(--text-lg);
+  padding: var(--space-4) 0;
+  border-bottom: 1px dashed var(--text-tertiary);
+  display: flex;
+  gap: var(--space-4);
+}
+.sessionStatusList li span {
+  background-color: var(--brand-secondary);
+  border-radius: 100%;
+  color: var(--base);
+}

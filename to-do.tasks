@@ -3,3 +3,6 @@
 ☐ Auth
 ☐ Loading
 ☐ check animation
+☐ improve dialog structure
+☐ add a css to limit the app width, so even accessing in web still feels like mobile
+☐ understand how Material dynamic icons work to use them filled when needed 
