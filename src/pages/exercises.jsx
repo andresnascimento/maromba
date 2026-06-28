@@ -30,7 +30,7 @@ export default function Exercises() {
       try {
         setIsLoading(true);
         const data = await getExercises(id);
-        // console.log(data);
+
         setExerciseData(data || {});
         setExercises(data.exercises || []);
       } catch (error) {
@@ -62,6 +62,7 @@ export default function Exercises() {
     } finally {
       navigate("/finishedSession", {
         state: {
+          workoutId: exerciseData.id,
           workoutName: exerciseData.name,
           totalExercises: exercises.length,
           completed: checkedExercises.length,
@@ -146,7 +147,10 @@ export default function Exercises() {
           <Button
             size="md"
             variant="secondary"
-            onClick={() => handleSaveWorkout(exerciseData.id)}
+            onClick={() => {
+              handleSaveWorkout(exerciseData.id);
+              console.log("opa:", exerciseData.id);
+            }}
           >
             Finish anyway
           </Button>

@@ -1,15 +1,21 @@
 import { supabase } from "../../services/supabase";
 
 async function saveLastWorkout(workoutId) {
-  await supabase
+  // change table structure when add multiple users. Connect the table with user_id.
+  const { data, error } = await supabase
     .from("user_state")
     .update({
       last_workout_id: workoutId,
       updated_at: new Date().toISOString(),
     })
     .eq("id", "5a71243d-89b4-4a35-ba45-270a28ba8850")
-    .select()
-    .single();
+    .select();
+  // .single();
+  if (error) {
+    console.error("error updating user_state:", error);
+    return null;
+  }
+  return data;
 }
 
 async function getLastWorkout() {
@@ -31,7 +37,6 @@ async function getLastWorkout() {
     console.error("Error on getting last workout", error.message);
     throw new Error(error.message);
   }
-
   return data;
 }
 

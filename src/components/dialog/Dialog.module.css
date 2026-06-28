@@ -9,12 +9,13 @@
   margin: 0;
   padding: var(--space-6);
   width: 100%;
-  height: fit-content;
+  height: 100%;
+  /* height: fit-content; */
   max-width: 100%;
   border-radius: 1rem 1rem 0 0;
   background: var(--surface-2);
   color: var(--text-primary);
-  transform: translateY(140%);
+  transform: translateY(0);
   transition:
     transform 0.3s ease,
     opacity 0.4s ease,

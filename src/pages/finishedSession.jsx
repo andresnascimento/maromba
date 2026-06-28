@@ -5,12 +5,12 @@ import Icon from "../components/icon";
 
 import finishedImage from "../assets/img/workout-success-1.gif";
 import styles from "./finishedSession.module.css";
+// import { useEffect } from "react";
 
 export default function FinishedSession() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  console.log(state);
   if (!state)
     return (
       <section>
