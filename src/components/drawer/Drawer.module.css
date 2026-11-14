@@ -1,0 +1,49 @@
+.drawer {
+  inset: auto 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.drawer.open {
+  transform: translateY(0);
+}
+
+.drawer::backdrop {
+  background: var(--base);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.drawer.open::backdrop {
+  opacity: 0.8;
+}
+
+.drawerContent {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-3) var(--space-6) var(--space-6);
+}
+
+.drawerHandle {
+  justify-self: center;
+  width: var(--space-12);
+  height: var(--space-1);
+  border-radius: var(--radius-xs);
+  background: var(--surface-5);
+}
+
+/* where the open transition starts from, right after showModal() */
+@starting-style {
+  .drawer.open {
+    transform: translateY(100%);
+  }
+  .drawer.open::backdrop {
+    opacity: 0;
+  }
+}

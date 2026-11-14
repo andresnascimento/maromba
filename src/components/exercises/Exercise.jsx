@@ -1,8 +1,9 @@
 import styles from "./Exercise.module.css";
+import ExerciseWeight from "./ExerciseWeight";
 
-export default function Exercise({ exercise, onChange }) {
+export default function Exercise({ exercise, onChange, onWeightClick }) {
   return (
-    <article className={styles.exerciseItem}>
+    <article className={`${styles.exerciseItem} u-flex gap-16`}>
       <label className={styles.exerciseItemCheckbox}>
         <input
           type="checkbox"
@@ -18,6 +19,12 @@ export default function Exercise({ exercise, onChange }) {
           </p>
         </div>
       </label>
+      {/* outside the label, so tapping the weight doesn't toggle the checkbox */}
+      <ExerciseWeight
+        weight={exercise.weight}
+        exerciseName={exercise.exercise}
+        onClick={onWeightClick}
+      />
     </article>
   );
 }

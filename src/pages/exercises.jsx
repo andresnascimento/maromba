@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getExercises } from "../features/services/exercises";
+import {
+  getExercises,
+  updateExerciseWeight,
+} from "../features/services/exercises";
 import userState from "../features/services/userState";
 
 import Button from "../components/button";
@@ -10,11 +13,13 @@ import Exercise from "../components/exercises";
 import Loading from "../components/loading";
 import ProgressBar from "../components/progressBar/";
 import PageHeader from "../components/pageHeader/";
-import Dialog from "../components/dialog/";
 import DialogFeedback from "../components/dialog/DialogFeedback";
+import Drawer from "../components/drawer";
+import { useSessionTimer } from "../hooks/useSessionTimer";
+import ExerciseWeightForm from "../components/exercises/ExerciseWeightForm";
 
 import "../styles/global.css";
-import confirm from "../assets/img/confirm.gif";
+import confirm from "../assets/img/confirm.webp";
 
 export default function Exercises() {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +27,17 @@ export default function Exercises() {
   const [exercises, setExercises] = useState([]);
   const [checkedExercises, setCheckedExercises] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // the drawer keeps the last exercise while it slides closed;
+  // weightDrawerKey resets the form every time it opens
+  const [weightExerciseId, setWeightExerciseId] = useState(null);
+  const [isWeightDrawerOpen, setIsWeightDrawerOpen] = useState(false);
+  const [weightDrawerKey, setWeightDrawerKey] = useState(0);
+  const weightExercise = exercises.find(
+    (exercise) => exercise.id === weightExerciseId,
+  );
   const { id } = useParams();
   const navigate = useNavigate();
+  const { finishSession } = useSessionTimer(id);
 
   useEffect(() => {
     async function load() {
@@ -32,7 +46,7 @@ export default function Exercises() {
         const data = await getExercises(id);
 
         setExerciseData(data || {});
-        setExercises(data.exercises || []);
+        setExercises(data?.exercises || []);
       } catch (error) {
         console.error("Error loading exercises:", error);
       } finally {
@@ -54,6 +68,29 @@ export default function Exercises() {
     }
   }
 
+  function openWeightDrawer(exerciseId) {
+    setWeightExerciseId(exerciseId);
+    setWeightDrawerKey((key) => key + 1);
+    setIsWeightDrawerOpen(true);
+  }
+
+  async function handleWeightChange(exerciseId, weight) {
+    setIsWeightDrawerOpen(false);
+    const previous = exercises;
+    // update the screen right away, revert if saving fails
+    setExercises((current) =>
+      current.map((exercise) =>
+        exercise.id === exerciseId ? { ...exercise, weight } : exercise,
+      ),
+    );
+    try {
+      await updateExerciseWeight(exerciseId, weight);
+    } catch (error) {
+      console.error("Error saving weight:", error);
+      setExercises(previous);
+    }
+  }
+
   function handleSaveWorkout(id) {
     try {
       userState.saveLastWorkout(id);
@@ -66,7 +103,7 @@ export default function Exercises() {
           workoutName: exerciseData.name,
           totalExercises: exercises.length,
           completed: checkedExercises.length,
-          duration: 40,
+          durationSeconds: finishSession(),
         },
       });
     }
@@ -93,8 +130,7 @@ export default function Exercises() {
         </Button>
       </nav>
       <PageHeader
-        title={`Workout ${exerciseData.name}`}
-        subtitle={exerciseData.title}
+        title={exerciseData.title}
         className="exercisePageHeader"
       />
 
@@ -117,6 +153,7 @@ export default function Exercises() {
               <Exercise
                 exercise={exercise}
                 onChange={() => handleCheckExercise(exercise.id)}
+                onWeightClick={() => openWeightDrawer(exercise.id)}
               />
             )}
           />
@@ -130,8 +167,28 @@ export default function Exercises() {
           </Button>
         </section>
       </main>
-      <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+      <Drawer
+        isOpen={isWeightDrawerOpen}
+        onClose={() => setIsWeightDrawerOpen(false)}
+        labelledBy="weight-drawer-title"
+      >
+        {weightExercise && (
+          <ExerciseWeightForm
+            key={weightDrawerKey}
+            exercise={weightExercise}
+            titleId="weight-drawer-title"
+            onSave={(weight) => handleWeightChange(weightExercise.id, weight)}
+            onClose={() => setIsWeightDrawerOpen(false)}
+          />
+        )}
+      </Drawer>
+      <Drawer
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        labelledBy="incomplete-workout-title"
+      >
         <DialogFeedback
+          titleId="incomplete-workout-title"
           image={confirm}
           title="Incomplete Workout"
           subtitle={` You haven't checked all exercises yet. Are you sure you want to finish
@@ -155,7 +212,7 @@ export default function Exercises() {
             Finish anyway
           </Button>
         </DialogFeedback>
-      </Dialog>
+      </Drawer>
     </div>
   );
 }

@@ -2,8 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../components/card/Card";
 import Button from "../components/button";
 import Icon from "../components/icon";
+import { formatDuration } from "../hooks/useSessionTimer";
 
-import finishedImage from "../assets/img/workout-success-1.gif";
+import finishedImage from "../assets/img/workout-success-1.webp";
 import styles from "./finishedSession.module.css";
 // import { useEffect } from "react";
 
@@ -38,7 +39,8 @@ export default function FinishedSession() {
             {`${state.completed} of ${state.totalExercises} completed`}
           </li>
           <li>
-            <Icon iconName="check" /> {`40min session`}
+            <Icon iconName="check" />{" "}
+            {`${formatDuration(state.durationSeconds ?? 0)} session`}
           </li>
         </ul>
         <Button
