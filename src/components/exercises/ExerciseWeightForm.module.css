@@ -1,0 +1,103 @@
+.weightForm {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  padding-bottom: var(--space-1);
+}
+.info {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+/* − / + buttons */
+.stepButton {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--space-16);
+  height: var(--space-16);
+  border: none;
+  border-radius: var(--radius-XXG);
+  background: var(--surface-3);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.stepButton:hover {
+  background: var(--surface-4);
+}
+
+/* big value */
+.valueField {
+  justify-content: center;
+  align-items: baseline;
+  min-width: 0;
+  padding: 0 var(--space-4) var(--space-1);
+  border-bottom: 2px solid var(--brand-secondary);
+  color: var(--text-secondary);
+}
+.valueField:has(input[aria-invalid="true"]) {
+  border-bottom-color: var(--surface-5);
+}
+
+.valueInput {
+  min-width: 0;
+  max-width: 5ch;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--text-6xl);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+.valueInput:focus {
+  box-shadow: none;
+}
+.valueInput::placeholder {
+  color: var(--text-tertiary);
+}
+
+.unit {
+  font-size: var(--text-2xl);
+  color: var(--text-secondary);
+}
+
+/* last time + difference */
+.lastTime {
+  margin-top: calc(var(--space-2) * -1);
+  text-align: center;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+}
+.diffUp {
+  color: var(--brand-secondary);
+}
+.diffDown {
+  color: var(--text-primary);
+}
+
+/* +2.5 / +5 / +10 */
+.quickAdd {
+  min-width: var(--space-16);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--surface-5);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  letter-spacing: 4%;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.quickAdd:hover {
+  background: var(--surface-3);
+}

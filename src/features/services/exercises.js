@@ -15,7 +15,8 @@ export async function getExercises(workoutId) {
         sets,
         reps,
         rest,
-        description
+        description,
+        weight
       )
     `,
     )
@@ -29,4 +30,18 @@ export async function getExercises(workoutId) {
   }
 
   return data;
+}
+
+export async function updateExerciseWeight(exerciseId, weight) {
+  const { data, error } = await supabase
+    .from("exercises")
+    .update({ weight })
+    .eq("id", exerciseId)
+    .select("id, weight");
+
+  if (error) throw new Error(error.message);
+  // Supabase returns no rows (instead of an error) when an RLS policy blocks the update.
+  if (!data?.length) throw new Error("Weight not saved: update not allowed");
+
+  return data[0];
 }

@@ -1,7 +1,13 @@
 import Button from "../button";
 import styles from "./Dialog.module.css";
 
-export default function DialogFeedback({ title, image, subtitle, children }) {
+export default function DialogFeedback({
+  title,
+  titleId,
+  image,
+  subtitle,
+  children,
+}) {
   return (
     <>
       <form method="dialog">
@@ -10,7 +16,9 @@ export default function DialogFeedback({ title, image, subtitle, children }) {
             <img src={image} alt="" />
           </figure>
         )}
-        <h2 className={styles.dialogTitle}>{title}</h2>
+        <h2 id={titleId} className={styles.dialogTitle}>
+          {title}
+        </h2>
 
         <p>{subtitle}</p>
 

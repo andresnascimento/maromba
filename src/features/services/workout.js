@@ -6,7 +6,7 @@ export async function getWorkoutData() {
     .select(
       `
       last_workout_id,
-      workouts (
+      workouts!user_state_last_workout_fk (
         id,
         name,
         title,

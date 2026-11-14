@@ -1,0 +1,42 @@
+.weightValue,
+.weightEmpty {
+  flex-shrink: 0;
+  min-height: var(--space-12);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  letter-spacing: 4%;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+/* weight set */
+.weightValue {
+  border: 1px solid transparent;
+  background-color: var(--surface-3);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.weightValue:hover {
+  background-color: var(--surface-4);
+}
+
+/* no weight yet */
+.weightEmpty {
+  border: 1px dashed var(--surface-5);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.weightEmpty:hover {
+  background-color: var(--surface-3);
+  color: var(--text-primary);
+}
+
+.weightValue:focus-visible,
+.weightEmpty:focus-visible {
+  outline: none;
+  border-color: var(--brand-secondary);
+  box-shadow: 0 0 4px 0 var(--brand-secondary-glow);
+}
