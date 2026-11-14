@@ -29,12 +29,12 @@ export default function Home() {
         if (data.workouts !== null) {
           console.log("lastWorkOut:", lastWorkout);
           let sortedWorkout = data.workouts;
-          const index = sortedWorkout.findIndex((workout) => {
-            if (workout.id === data.lastWorkout.id) {
-              // console.log(workout.id, data.lastWorkout.id);
-              return workout;
-            }
-          });
+          // lastWorkout is null when user_state has no (or a deleted) last workout;
+          // findIndex then returns -1 and the list starts from the first workout.
+          const lastWorkoutId = data.lastWorkout?.id;
+          const index = sortedWorkout.findIndex(
+            (workout) => workout.id === lastWorkoutId,
+          );
 
           // set the next workout index
           const nextIndex = (index + 1) % sortedWorkout.length;
